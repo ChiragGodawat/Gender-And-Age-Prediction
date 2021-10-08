@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capstone Project</title>
+</head>
+<body>
+    <div>
+        <h1>Results: </h1>
+        <br>
+        <br>
+        <div id="container">
+            <script>
+                var table = document.createElement('table'), tr, td, th, row, cell;
+                var results = JSON.parse('{{ results | tojson | safe}}');
+
+                tr = document.createElement('tr')
+
+                th = document.createElement('th')
+                tr.appendChild(th)
+                th.innerHTML = "Device ID"
+
+                th = document.createElement('th')
+                tr.appendChild(th)
+                th.innerHTML = "Age"
+
+                th = document.createElement('th')
+                tr.appendChild(th)
+                th.innerHTML = "Gender"
+
+                th = document.createElement('th')
+                tr.appendChild(th)
+                th.innerHTML = "Campaign"
+
+                table.appendChild(tr)
+
+                for (row = 0; row < 50; row++) {
+                    tr = document.createElement('tr');
+                    for (cell = 0; cell < 4; cell++) {
+                        td = document.createElement('td');
+                        tr.appendChild(td);
+                        td.innerHTML = results[row][cell];
+                    }
+                    table.appendChild(tr);
+                }
+
+                document.getElementById('container').style.borderWidth = "thick";
+
+                document.getElementById('container').appendChild(table);
+
+            </script>
+        </div>
+    </div>
+</body>
+</html>
